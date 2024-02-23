@@ -9,8 +9,9 @@ import Splash from './src/screens/Splash';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 import Home from './src/screens/Home';
-import Favorites from './src/screens/Favorites';
 import Profile from './src/screens/Profile';
+import ProductDetails from './src/screens/ProductDetails';
+import Cart from './src/screens/Cart';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -27,10 +28,10 @@ const Tabs = () => (
           icon = focused
             ? require('./src/assets/icons/tabs/profile_active.png')
             : require('./src/assets/icons/tabs/profile.png')
-        } else if (route.name === 'Favorites') {
+        } else if (route.name === 'Cart') {
           icon = focused
-            ? require('./src/assets/icons/tabs/bookmark_active.png')
-            : require('./src/assets/icons/tabs/bookmark.png')
+            ? require('./src/assets/icons/tabs/cart_active.png')
+            : require('./src/assets/icons/tabs/cart.png')
         }
         return <Image style={{ width: 24, height: 24 }} source={icon} />
       },
@@ -39,7 +40,7 @@ const Tabs = () => (
       tabBarStyle: { borderTopColor: '#DADADA' },
     })} >
     <Tab.Screen name='Home' component={Home} />
-    <Tab.Screen name='Favorites' component={Favorites} />
+    <Tab.Screen name='Cart' component={Cart} />
     <Tab.Screen name='Profile' component={Profile} />
   </Tab.Navigator>
 );
@@ -52,14 +53,21 @@ function App() {
         {isSignedIn ? (
           <>
             <Stack.Screen name='Tabs' component={Tabs} options={{ headerShown: false }} />
+            <Stack.Screen name="ProductDetails" component={ProductDetails} />
           </>
         ) : (
           <>
             <Stack.Screen name="Splash" component={Splash} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
+
           </>
         )}
+        {/* <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name='Tabs' component={Tabs} options={{ headerShown: false }} />
+        <Stack.Screen name="ProductDetails" component={ProductDetails} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

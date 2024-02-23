@@ -6,13 +6,18 @@ import { categories } from "../../components/data/categories";
 import CategoryBox from "../../components/CategoryBox";
 import ProductHomeItem from "../../components/ProductHomeItem";
 import { products } from "../../components/data/products";
+import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
     const [keyword, setKeyword] = useState(false);
     const [filteredProduct, setFilteredProduct] = useState(products);
     const [selectedCategory, setSelectedCategory] = useState();
     console.log('key', keyword)
-
+    const navigation = useNavigation();
+    
+    const handleProductDetails = (productId) => {
+        navigation.navigate('ProductDetails', { productId });
+    }
     // Begin Search
     useEffect(() => {
         if (selectedCategory && !keyword) {
@@ -34,7 +39,8 @@ const Home = () => {
         return <CategoryBox title={item?.title} image={item?.image}></CategoryBox>;
     };
     const renderProductItem = ({ item }) => {
-        return <ProductHomeItem {...item} />
+        return <ProductHomeItem {...item} 
+        onPress={() => handleProductDetails(item.id)} />
     }
     return (
         <SafeAreaView>
