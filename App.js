@@ -12,6 +12,8 @@ import Home from './src/screens/Home';
 import Profile from './src/screens/Profile';
 import ProductDetails from './src/screens/ProductDetails';
 import Cart from './src/screens/Cart';
+import Favorite from './src/screens/Favorite';
+import { UserProvider } from './src/UserContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,14 +26,18 @@ const Tabs = () => (
           icon = focused
             ? require('./src/assets/icons/tabs/home_active.png')
             : require('./src/assets/icons/tabs/home.png')
-        } else if (route.name === 'Profile') {
+        } else if (route.name === 'Favorite') {
           icon = focused
-            ? require('./src/assets/icons/tabs/profile_active.png')
-            : require('./src/assets/icons/tabs/profile.png')
+            ? require('./src/assets/icons/tabs/heart_active.png')
+            : require('./src/assets/icons/tabs/heart.png')
         } else if (route.name === 'Cart') {
           icon = focused
             ? require('./src/assets/icons/tabs/cart_active.png')
             : require('./src/assets/icons/tabs/cart.png')
+        }else if (route.name === 'Profile') {
+          icon = focused
+            ? require('./src/assets/icons/tabs/profile_active.png')
+            : require('./src/assets/icons/tabs/profile.png')
         }
         return <Image style={{ width: 24, height: 24 }} source={icon} />
       },
@@ -39,18 +45,21 @@ const Tabs = () => (
       tabBarShowLabel: false,
       tabBarStyle: { borderTopColor: '#DADADA' },
     })} >
-    <Tab.Screen name='Home' component={Home} />
+    <Tab.Screen name='Home' component={Home}/>
+    <Tab.Screen name='Favorite' component={Favorite} />
     <Tab.Screen name='Cart' component={Cart} />
     <Tab.Screen name='Profile' component={Profile} />
   </Tab.Navigator>
 );
 
 function App() {
+
   const isSignedIn = true;
   return (
-    <NavigationContainer>
+  <UserProvider>
+      <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {isSignedIn ? (
+        {/* {isSignedIn ? (
           <>
             <Stack.Screen name='Tabs' component={Tabs} options={{ headerShown: false }} />
             <Stack.Screen name="ProductDetails" component={ProductDetails} />
@@ -62,14 +71,15 @@ function App() {
             <Stack.Screen name="Register" component={Register} />
 
           </>
-        )}
-        {/* <Stack.Screen name="Splash" component={Splash} />
+        )} */}
+        <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name='Tabs' component={Tabs} options={{ headerShown: false }} />
-        <Stack.Screen name="ProductDetails" component={ProductDetails} /> */}
+        <Stack.Screen name="ProductDetails" component={ProductDetails}/>
       </Stack.Navigator>
     </NavigationContainer>
+  </UserProvider>
   );
 }
 

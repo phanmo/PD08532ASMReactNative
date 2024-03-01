@@ -12,12 +12,12 @@ const Home = () => {
     const [keyword, setKeyword] = useState(false);
     const [filteredProduct, setFilteredProduct] = useState(products);
     const [selectedCategory, setSelectedCategory] = useState();
-    console.log('key', keyword)
     const navigation = useNavigation();
     
     const handleProductDetails = (productId) => {
         navigation.navigate('ProductDetails', { productId });
-    }
+    };
+
     // Begin Search
     useEffect(() => {
         if (selectedCategory && !keyword) {
@@ -36,7 +36,9 @@ const Home = () => {
     // End search
 
     const renderCategoryItem = ({ item, index }) => {
-        return <CategoryBox title={item?.title} image={item?.image}></CategoryBox>;
+        return <CategoryBox title={item?.title} image={item?.image}
+        onPress={() => setSelectedCategory(item.id)} 
+        selected={item.id === selectedCategory}/>;
     };
     const renderProductItem = ({ item }) => {
         return <ProductHomeItem {...item} 

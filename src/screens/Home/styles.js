@@ -2,13 +2,13 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
-        padding: 24,
+        padding: 16,
     },
     list:{
-        paddingVertical: 24,
-        marginTop: 16,
+        paddingVertical: 20,
+        marginTop: 10,
     },
     productsList:{
-        paddingHorizontal: 16,
+        paddingHorizontal: 10,
     }
 });

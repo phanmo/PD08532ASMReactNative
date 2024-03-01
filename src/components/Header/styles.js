@@ -10,7 +10,7 @@ import { StyleSheet } from "react-native";
         marginVertical: 8,
     },
     title:{
-        color:'#303030',
+        color:'red',
         fontSize: 16,
         fontWeight: 'bold',
     },

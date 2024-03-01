@@ -43,7 +43,7 @@ export const products=[
         id: 6,
         title:'Succulent',
         image: 'https://i.pinimg.com/originals/bd/67/a3/bd67a34d583247fa86fe2a6eab80d4aa.jpg',
-        category: 6,
+        category: 5,
         price: '$ 15.00',
         description:'Orchid flowers have three sepals, three petals and a three-chambered ovary. The three sepals and two of the petals are often similar to each other but one petal is usually highly modified, forming a "lip" or labellum.'
     },

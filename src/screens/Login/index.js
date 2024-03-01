@@ -8,10 +8,12 @@ import { darkGreen } from "../../Constants";
 import Separator from "../../components/Separator";
 import GoogleLogin from "../../components/GoogleLogin";
 import { users } from "../../components/data/users";
+import { useUser } from "../../UserContext";
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { setUser } = useUser();
     const handleLogin = () => {
         if (!email || !password) {
             Alert.alert("Please fill in all fields");
@@ -19,7 +21,10 @@ const Login = (props) => {
         }
         const user = users.find(user => user.email === email && user.password === password);
         if (user) {
+            setUser(user.id); // Cập nhật userId trong context
             props.navigation.navigate("Tabs");
+            setEmail(''),
+            setPassword(''),
             Alert.alert("Logged in successfully!");
 
         } else {
